@@ -1,4 +1,4 @@
-name: Dependabot Automerge
+name: Dependabot PR Automerge
 description: Automatically merge Dependabot PRs using GitHub Actions.
 
 branding:
