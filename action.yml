@@ -1,0 +1,51 @@
+name: Dependabot Automerge
+description: Automatically merge Dependabot PRs using GitHub Actions.
+
+branding:
+  color: black
+  icon: git-merge
+
+inputs:
+  github-token:
+    description: The GitHub PAT used to merge the pull-request
+    required: true
+    
+  config:
+    description: Path to configuration file (relative to root)
+    default: .github/auto-merge.yml
+    required: false
+   
+  command:
+    description: The command to pass to Dependabot as a comment
+    default: merge
+    required: false
+    
+  botName:
+    description: The bot to tag in approve/comment message. You can use this to create your own merge bot.
+    default: dependabot
+    required: false
+    
+  approve:
+    description: Auto-approve pull-requests
+    default: 'true'
+    required: false
+    
+  target:
+    description: The version comparison target (major, minor, patch). This is ignored if .github/auto-merge.yml exists
+    default: patch
+    required: false
+  
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Auto Merge [Dependabot]
+      uses: ahmadnassri/action-dependabot-auto-merge@v2
+      with:
+        github-token: ${{ inputs.github-token }}
+        target: ${{ inputs.target }}
+        config: ${{ inputs.config }}
+        command: ${{ inputs.command }}
+        botName: ${{ inputs.botName }}
+        approve: ${{ inputs.approve }}
