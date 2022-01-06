@@ -15,6 +15,7 @@ This action requires the presence of inputs, which are listed below.
 ### Inputs
 
 - `github-token`: The [GitHub Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) used to merge the pull-request. (**required**)
+- `config`: Path to configuration file (relative to root). *Default*: `.github/auto-merge.yml` (**optional**)
 - `target`: The version comparison target (major, minor, patch). *Default*: `patch` (**optional**)
 - `command`: The command to pass to Dependabot. *Default*: `merge` (**optional**)
 - `botName`: The bot to tag in approve/comment message. *Default*: `dependabot` (**optional**)
